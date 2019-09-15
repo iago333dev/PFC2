@@ -5,7 +5,7 @@ class DatabaseUtility{
     
         private $dsn, $username, $password, $database, $host;
 		public $name, $pdo;
-        public function __construct($host = "127.0.0.1:3306", $username ="root", $password = "", $database = "mydb"){
+        public function __construct($host = "127.0.0.1:3306", $username ="ietzz", $password = "856252", $database = "mydb"){
             $this->host = $host;
             $this->dsn = "mysqli:dbname=$database;host:$host";
             $this->username = $username;
@@ -27,8 +27,9 @@ class DatabaseUtility{
         
         
         public function cadas_empres ($a,$b,$c,$d,$e,$f,$g) {
-            $sql = "INSERT INTO empresa (idEmpresa,Nome,CNPJ,Contato1,Contato2,Endereco,Bairro,UF) VALUES(DEFAULT,'$a','$b','$c','$d','$e','$f','$g')";
+            $sql = "INSERT INTO Empresa (idEmpresa,Nome,CNPJ,Contato1,Contato2,Endereco,Bairro,UF) VALUES(DEFAULT,'$a','$b','$c','$d','$e','$f','$g')";
             $this->pdo->query($sql);
+            
         }
 
         

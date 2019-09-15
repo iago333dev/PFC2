@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Empresa` (
   `Endereco` VARCHAR(255) NOT NULL,
   `Bairro` VARCHAR(45) NOT NULL,
   `UF` VARCHAR(2) NOT NULL,
-  `Usuario_idUsuario` INT NOT NULL,
+  `Usuario_idUsuario` INT, -- (IAGO) EU REMOVI O NOT NULL DISSO PARA FAZER OS TESTES
   PRIMARY KEY (`idEmpresa`),
   INDEX `fk_Empresa_Usuario1_idx` (`Usuario_idUsuario` ASC),
   UNIQUE INDEX `CNPJ_UNIQUE` (`CNPJ` ASC),

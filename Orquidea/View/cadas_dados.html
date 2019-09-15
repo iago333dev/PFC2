@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-
 <html>
     <head>
+        <title>Orquidea || Login</title>
         <meta charset="UTF-8">
-        <title>Orquidea || Cadastro Empresa</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form method='POST' action='../Controller/cadas_empres.php'>
-            Nome Da Empresa</br><input type="text" name="wnome"><br>
-            CNPJ</br><input type="text" name="wcnpj"><br>
-            Contato 01</br><input type="text" name="wcontato1"><br>
-            Contato 02</br><input type="text" name="wcontato2"><br>
-            Endereço</br><input type="text" name="wendereco"><br>
-            Bairro</br><input type="text" name="wbairro"><br>
-            UF</br>            
+        <form method="POST" action="../Controller/us_login.php">
+            Nome</br><input type="text" name="wnome"></br>
+            CPF</br><input type="text" name="wcpf"></br>
+            Email</br><input type="text" name="wemail"></br>
+            Telefone 1</br><input type="text" name="wtel1"></br>
+            Telefone 2</br><input type="text" name="wtel2"></br>
+            Endereço</br><input type="text" name="wender"></br>
+            Bairro</br><input type="text" name="wbair"></br>
+            UF</br>           
            <select name="wuf" >
              <option value="AC">AC</option>
              <option value="AL">AL</option>
@@ -43,7 +44,15 @@
              <option value="SP">SP</option>
              <option value="SE">SE</option>
              <option value="TO">TO</option>
-           </select>
+           </select></br>
+           Nacionalidade</br><input type="text" name="wpais"></br>
+           Data de Nascimento</br><input type="date" name="wnasc"></br>
+            
+           
+           Novo Login</br><input type="text" name="wlog"></br>
+           Nova Senha</br><input type="password" name="wsen"></br>
             <input type="submit">
+        </form>
+
     </body>
 </html>

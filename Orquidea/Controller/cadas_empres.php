@@ -38,10 +38,9 @@ if (!empty($_POST["wnome"])&& !empty($_POST["wcnpj"]) && !empty($_POST["wcontato
         $empres->GetEndereco(), 
         $empres->GetBairro(), 
         $empres->GetUf());
+        
     
  } else {
-    echo 'Faltou Algo';
-    $time = 5;
-    sleep($time);
-   
+    echo 'Faltou Algo </br>';
+    echo '<a href="../index.php" >Retornar</a>';
 }

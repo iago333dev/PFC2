@@ -6,9 +6,9 @@
         <title></title>
     </head>
     <body>
-        <?php
-        header('Location: ./View/cadas_empres.html');
-    
-        ?>
+        <a href="./View/cadas_empres.html" >Cadastrar Empresa</a></br>
+        <a href="./View/us_login.html" >Login Usuario/Gerente</a></br>
+        <a href="./View/cadas_dados.html" >Cadastrar Usuario</a></br>
+
     </body>
 </html>
