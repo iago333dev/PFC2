@@ -69,10 +69,18 @@ if($chave == 1){
    
    $ender_id = $conn->find_ender_id($newuser->GetCep());
    
+   
+   $emp_nome = filter_input(INPUT_POST,'wemnome' ,FILTER_DEFAULT);
+   $emp_cnpj = filter_input(INPUT_POST,'wemcnpj' ,FILTER_DEFAULT);
+   $conn->cadas_empres($emp_nome, $emp_cnpj, $ender_id);
+   
+   $emp_id = $conn->find_emp_id($emp_cnpj);
+   
+   
     //Cadastrado usuarios no banco
-    $conn->cadas_clien(
+    $conn->cadas_func(
      $newuser->GetNome(), $newuser->GetCpf(), $newuser->GetEmail(),
-     $newuser->GetTelefone1(),$newuser->GetTelefone2(), $newuser->GetDatanasc(),$id,$ender_id);
+     $newuser->GetTelefone1(),$newuser->GetTelefone2(), $newuser->GetDatanasc(),$id,$ender_id,$emp_id);
     
 
     //Desconectar

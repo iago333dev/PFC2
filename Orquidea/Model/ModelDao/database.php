@@ -28,14 +28,14 @@ class DatabaseUtility{
         }
         
         
-        public function cadas_empres ($a,$b,$c,$d,$e,$f,$g) {
-            $sql = "INSERT INTO Empresa (idEmpresa,Nome,CNPJ,Contato1,Contato2,Endereco,Bairro,UF) VALUES(DEFAULT,'$a','$b','$c','$d','$e','$f','$g')";
+        public function cadas_empres ($a,$b,$c) {
+            $sql = "INSERT INTO empresa (id,nome,cnpj,Endereco_id) VALUES(DEFAULT,'$a','$b','$c')";
             $this->pdo->query($sql);
             
         }
         
-        public function cadas_clien ($nome,$cpf,$email,$tel,$cel,$nasc,$login_id,$end_id) {
-            $sql = "INSERT INTO Cliente (id,nome,cpf,email,telefone,celular,nascimento,login_id,endereco_id) VALUES(DEFAULT,'$nome','$cpf','$email','$tel','$cel','$nasc','$login_id','$end_id')";
+        public function cadas_func ($nome,$cpf,$email,$tel,$cel,$nasc,$login_id,$end_id,$emp_id) {
+            $sql = "INSERT INTO funcionario (id,nome,cpf,email,telefone,celular,nascimento,login_id,endereco_id,Empresa_id) VALUES(DEFAULT,'$nome','$cpf','$email','$tel','$cel','$nasc','$login_id','$end_id',$emp_id)";
             $this->pdo->query($sql);
             
         }
@@ -52,6 +52,21 @@ class DatabaseUtility{
             }
         }
     
+        
+        public function find_emp_id ($cnpj) {
+            $sql = "select * from empresa";
+	    $query = $this->pdo->query($sql);
+	    while ($linha=$query->fetch(PDO::FETCH_ASSOC))
+	       {
+                if($cnpj == $linha['cnpj']){
+                   return $linha['id'];
+                }
+            }
+        }
+        
+        
+        
+        
         
        public function insert_user ($login,$senha){
             $sql2 = "INSERT INTO Login (id,usuario,senha,nivel) VALUES (DEFAULT,'$login','$senha','Cliente')";

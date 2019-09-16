@@ -17,13 +17,17 @@ class dados {
     private $login;
     private $senha;
     
-    
+    // Atributos da tabela endereco
     private $logradouro;
     private $bairro;
     private $cep;
     private $cidade;
     private $uf;
     private $pais;
+    
+    //Atributos da Tabela Empresa
+    private $empresa_nome;
+    private $empresa_cnpj;
 
 
 
