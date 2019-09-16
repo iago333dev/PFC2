@@ -58,7 +58,8 @@ public function GetBairro(){return $this->bairro;}
 public function GetUf(){return $this->uf;}
 public function GetNacionalidade(){return $this->nacionalidade;}
 public function GetDatanasc(){return $this->datanasc;}
-    
+public function GetLogin(){return $this->login;}
+public function GetSenha(){return $this->senha;}
 }
 
 

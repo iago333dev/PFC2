@@ -39,6 +39,24 @@ class DatabaseUtility{
             $this->pdo->query($sql);
             
         }
-
+        
+        //Atráves dessa função será buscado no Banco o ID do usuario cadastrado naquele momento;
+        public function find_id ($cpf) {
+            $sql = "select * from Dados";
+	    $query = $this->pdo->query($sql);
+	    while ($linha=$query->fetch(PDO::FETCH_ASSOC))
+	       {
+                if($cpf == $linha['CPF']){
+                   return $linha['idDados'];
+                }
+            }
+        }
+    
+        
+       public function insert_user ($login,$senha,$id){
+            $sql2 = "INSERT INTO Loginusuario (idLogin,Login,Senha,Usuario_idUsuario) VALUES (DEFAULT,'$login','$senha','$id')";
+            $this->pdo->query($sql2);
+           
+       }
         
 }

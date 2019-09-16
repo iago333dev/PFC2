@@ -16,7 +16,7 @@ if (!empty($_POST["wnome"])&& !empty($_POST["wcpf"]) && !empty($_POST["wemail"])
     { echo "Preencha todos campos";}
 
 
-if($chave =1){
+if($chave == 1){
     //Filtrando variaveis de entrada
     $a = filter_input(INPUT_POST,'wnome' ,FILTER_DEFAULT);
     $b = filter_input(INPUT_POST,'wcpf' ,FILTER_DEFAULT);
@@ -28,10 +28,12 @@ if($chave =1){
     $h = filter_input(INPUT_POST,'wuf' ,FILTER_DEFAULT);
     $i = filter_input(INPUT_POST,'wpais' ,FILTER_DEFAULT);
     $j = filter_input(INPUT_POST,'wnasc' ,FILTER_DEFAULT);
+    $login = filter_input(INPUT_POST,'wlog' ,FILTER_DEFAULT);
+    $senha = filter_input(INPUT_POST,'wsen' ,FILTER_DEFAULT);
     
     
     echo $j;
-    
+       
     //Instanciando classe dados
     $newuser = new dados($a, $b, $c, $d, $e, $f, $g, $h, $i, $j);    
     //Conexão com banco
@@ -43,6 +45,25 @@ if($chave =1){
      $newuser->GetNome(), $newuser->GetCpf(), $newuser->GetEmail(),
      $newuser->GetTelefone1(),$newuser->GetTelefone2(), $newuser->GetEndereco(),
      $newuser->GetBairro(), $newuser->GetUf(),$newuser->GetNacionalidade(), $newuser->GetDatanasc());
+     $newuser->SetAcesso($login, $senha);
+    
+    //Função recupera ID do Usuario
+   $id = $conn->find_id($newuser->GetCpf());
+   
+   
+   echo 'AQUI '.$id;
+   
+   
+   session_start();
+   $_SESSION['id'] = $id;
+   
+   echo "<a href='cadas_user.php' >Cotinuar</a></br>";
+     
+    
+    //Insere tabela login usuario atráves do ID recuperado
+   // $conn->insert_user($newuser->GetLogin(), $newuser->GetSenha(), $id);
+    
+    
     
     //Desconectar
     $conn->disconect();
