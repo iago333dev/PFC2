@@ -12,6 +12,8 @@ class DatabaseUtility{
             $this->password = $password;
             $this->database = $database;
         }
+        
+        public function disconect(){$this->pdo->close();}
                 
         
         public function connect(){
@@ -28,6 +30,12 @@ class DatabaseUtility{
         
         public function cadas_empres ($a,$b,$c,$d,$e,$f,$g) {
             $sql = "INSERT INTO Empresa (idEmpresa,Nome,CNPJ,Contato1,Contato2,Endereco,Bairro,UF) VALUES(DEFAULT,'$a','$b','$c','$d','$e','$f','$g')";
+            $this->pdo->query($sql);
+            
+        }
+        
+        public function cadas_dados ($a,$b,$c,$d,$e,$f,$g,$h,$i,$j) {
+            $sql = "INSERT INTO Dados (idDados,Nome,CPF,Email,Telefone1,Telefone2,Endereco,Bairro,UF,Pais,Nascimento) VALUES(DEFAULT,'$a','$b','$c','$d','$e','$f','$g','$h','$i','$j')";
             $this->pdo->query($sql);
             
         }

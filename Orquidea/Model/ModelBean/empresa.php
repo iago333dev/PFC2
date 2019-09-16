@@ -2,6 +2,12 @@
 
 
 class empresa {
+    
+    /**
+ * Classe que representa o cadastro das empresas
+ *
+ * @author ietzz [Iago Alves]
+ */
     private $nome;
     private $cnpj;
     private $contato1;

@@ -38,9 +38,14 @@ if (!empty($_POST["wnome"])&& !empty($_POST["wcnpj"]) && !empty($_POST["wcontato
         $empres->GetEndereco(), 
         $empres->GetBairro(), 
         $empres->GetUf());
+  
+// Fecha conexão
+$conn->disconect();  
         
     
  } else {
     echo 'Faltou Algo </br>';
     echo '<a href="../index.php" >Retornar</a>';
 }
+
+

@@ -6,16 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form method="POST" action="../Controller/us_login.php">
-            Nome</br><input type="text" name="wnome"></br>
-            CPF</br><input type="text" name="wcpf"></br>
-            Email</br><input type="text" name="wemail"></br>
-            Telefone 1</br><input type="text" name="wtel1"></br>
-            Telefone 2</br><input type="text" name="wtel2"></br>
-            Endereço</br><input type="text" name="wender"></br>
-            Bairro</br><input type="text" name="wbair"></br>
+        <form method="POST" action="../Controller/cadas_dados.php">
+            Nome</br><input type="text" name="wnome" required=""></br>
+            CPF</br><input type="number" name="wcpf" required=""></br>
+            Email</br><input type="email" name="wemail" required="" ></br>
+            Telefone 1</br><input type="number" name="wtel1" required="" ></br>
+            Telefone 2</br><input type="number" name="wtel2" required=""></br>
+            Endereço</br><input type="text" name="wender" required="" ></br>
+            Bairro</br><input type="text" name="wbair" required="" ></br>
             UF</br>           
-           <select name="wuf" >
+           <select name="wuf" required="">
              <option value="AC">AC</option>
              <option value="AL">AL</option>
              <option value="AM">AM</option>
@@ -45,12 +45,12 @@
              <option value="SE">SE</option>
              <option value="TO">TO</option>
            </select></br>
-           Nacionalidade</br><input type="text" name="wpais"></br>
-           Data de Nascimento</br><input type="date" name="wnasc"></br>
+           Nacionalidade</br><input type="text" name="wpais" required="" ></br>
+           Data de Nascimento</br><input type="date" name="wnasc" required="" ></br>
             
            
-           Novo Login</br><input type="text" name="wlog"></br>
-           Nova Senha</br><input type="password" name="wsen"></br>
+           Novo Login</br><input type="text" name="wlog" required="" ></br>
+           Nova Senha</br><input type="password" name="wsen" required="" ></br>
             <input type="submit">
         </form>
 
