@@ -17,56 +17,66 @@ if (!empty($_POST["wnome"])&& !empty($_POST["wcpf"]) && !empty($_POST["wemail"])
 
 
 if($chave == 1){
+    
+    $login = filter_input(INPUT_POST,'wlog' ,FILTER_DEFAULT);
+    $senha = filter_input(INPUT_POST,'wsen' ,FILTER_DEFAULT);
+    
     //Filtrando variaveis de entrada
     $a = filter_input(INPUT_POST,'wnome' ,FILTER_DEFAULT);
     $b = filter_input(INPUT_POST,'wcpf' ,FILTER_DEFAULT);
     $c = filter_input(INPUT_POST,'wemail' ,FILTER_SANITIZE_EMAIL);
     $d = filter_input(INPUT_POST,'wtel1' ,FILTER_DEFAULT);
     $e = filter_input(INPUT_POST,'wtel2' ,FILTER_DEFAULT);
-    $f = filter_input(INPUT_POST,'wender' ,FILTER_DEFAULT);
-    $g = filter_input(INPUT_POST,'wbair' ,FILTER_DEFAULT);
-    $h = filter_input(INPUT_POST,'wuf' ,FILTER_DEFAULT);
-    $i = filter_input(INPUT_POST,'wpais' ,FILTER_DEFAULT);
-    $j = filter_input(INPUT_POST,'wnasc' ,FILTER_DEFAULT);
-    $login = filter_input(INPUT_POST,'wlog' ,FILTER_DEFAULT);
-    $senha = filter_input(INPUT_POST,'wsen' ,FILTER_DEFAULT);
-    
-    
-    echo $j;
-       
+    $f = filter_input(INPUT_POST,'wnasc' ,FILTER_DEFAULT);
+
     //Instanciando classe dados
-    $newuser = new dados($a, $b, $c, $d, $e, $f, $g, $h, $i, $j);    
+    $newuser = new dados($a, $b, $c, $d, $e, $f); 
+    
+    $newuser->SetAcesso($login, $senha);    
     //Conexão com banco
     $conn = new DatabaseUtility();
     $conn ->connect();
     
+    
+   $id = $conn->find_id($newuser->GetLogin());
+   
+   
+   $newuser->SetAcesso($login, $senha);
+   
+   $conn->insert_user($newuser->GetLogin(), $newuser->GetSenha(),$id);
+   
+   // Tabela Endereço
+   
+   $log = filter_input(INPUT_POST,'wender' ,FILTER_DEFAULT);
+   $bai = filter_input(INPUT_POST,'wbair' ,FILTER_DEFAULT);
+   $cep = filter_input(INPUT_POST,'wcep' ,FILTER_DEFAULT);
+   $cid = filter_input(INPUT_POST,'wcid' ,FILTER_DEFAULT);
+   $uf = filter_input(INPUT_POST,'wuf' ,FILTER_DEFAULT);
+   $pais = filter_input(INPUT_POST,'wpais' ,FILTER_DEFAULT);
+   
+   //Instanciando Classe
+   
+   $newuser->SetEndereco($log, $bai, $cep, $cid, $uf, $pais);
+   
+   // Inserir ao Banco Usuario
+   $conn->insert_ender(
+          $newuser->GetLogradouro(),
+          $newuser->GetBairro(),
+          $newuser->GetCep(),
+          $newuser->GetCidade(),
+          $newuser->GetUf(),
+          $newuser->GetPais());
+   
+   $ender_id = $conn->find_ender_id($newuser->GetCep());
+   
     //Cadastrado usuarios no banco
-    $conn->cadas_dados(
+    $conn->cadas_clien(
      $newuser->GetNome(), $newuser->GetCpf(), $newuser->GetEmail(),
-     $newuser->GetTelefone1(),$newuser->GetTelefone2(), $newuser->GetEndereco(),
-     $newuser->GetBairro(), $newuser->GetUf(),$newuser->GetNacionalidade(), $newuser->GetDatanasc());
-     $newuser->SetAcesso($login, $senha);
+     $newuser->GetTelefone1(),$newuser->GetTelefone2(), $newuser->GetDatanasc(),$id,$ender_id);
     
-    //Função recupera ID do Usuario
-   $id = $conn->find_id($newuser->GetCpf());
-   
-   
-   echo 'AQUI '.$id;
-   
-   
-   session_start();
-   $_SESSION['id'] = $id;
-   
-   echo "<a href='cadas_user.php' >Cotinuar</a></br>";
-     
-    
-    //Insere tabela login usuario atráves do ID recuperado
-   // $conn->insert_user($newuser->GetLogin(), $newuser->GetSenha(), $id);
-    
-    
-    
+
     //Desconectar
-    $conn->disconect();
+    $conn = null;
     
   
 

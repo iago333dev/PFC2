@@ -5,7 +5,7 @@ class DatabaseUtility{
     
         private $dsn, $username, $password, $database, $host;
 		public $name, $pdo;
-        public function __construct($host = "127.0.0.1:3306", $username ="ietzz", $password = "856252", $database = "mydb"){
+        public function __construct($host = "127.0.0.1:3306", $username ="root", $password = "", $database = "mydb"){
             $this->host = $host;
             $this->dsn = "mysqli:dbname=$database;host:$host";
             $this->username = $username;
@@ -34,29 +34,46 @@ class DatabaseUtility{
             
         }
         
-        public function cadas_dados ($a,$b,$c,$d,$e,$f,$g,$h,$i,$j) {
-            $sql = "INSERT INTO Dados (idDados,Nome,CPF,Email,Telefone1,Telefone2,Endereco,Bairro,UF,Pais,Nascimento) VALUES(DEFAULT,'$a','$b','$c','$d','$e','$f','$g','$h','$i','$j')";
+        public function cadas_clien ($nome,$cpf,$email,$tel,$cel,$nasc,$login_id,$end_id) {
+            $sql = "INSERT INTO Cliente (id,nome,cpf,email,telefone,celular,nascimento,login_id,endereco_id) VALUES(DEFAULT,'$nome','$cpf','$email','$tel','$cel','$nasc','$login_id','$end_id')";
             $this->pdo->query($sql);
             
         }
         
         //Atráves dessa função será buscado no Banco o ID do usuario cadastrado naquele momento;
-        public function find_id ($cpf) {
-            $sql = "select * from Dados";
+        public function find_id ($user) {
+            $sql = "select * from login";
 	    $query = $this->pdo->query($sql);
 	    while ($linha=$query->fetch(PDO::FETCH_ASSOC))
 	       {
-                if($cpf == $linha['CPF']){
-                   return $linha['idDados'];
+                if($user == $linha['usuario']){
+                   return $linha['id'];
                 }
             }
         }
     
         
-       public function insert_user ($login,$senha,$id){
-            $sql2 = "INSERT INTO Loginusuario (idLogin,Login,Senha,Usuario_idUsuario) VALUES (DEFAULT,'$login','$senha','$id')";
+       public function insert_user ($login,$senha){
+            $sql2 = "INSERT INTO Login (id,usuario,senha,nivel) VALUES (DEFAULT,'$login','$senha','Cliente')";
             $this->pdo->query($sql2);
            
        }
+       
+       public function insert_ender ($log,$bair,$cep,$cid,$uf,$pais){
+            $sql3 = "INSERT INTO endereco (id,logradouro,bairro,cep,cidade,uf,pais) VALUES (DEFAULT,'$log','$bair','$cep','$cid','$uf','$pais')";
+            $this->pdo->query($sql3);
+           
+       }
+       
+        public function find_ender_id ($cep) {
+            $sql = "select * from endereco";
+	    $query = $this->pdo->query($sql);
+	    while ($linha=$query->fetch(PDO::FETCH_ASSOC))
+	       {
+                if($cep == $linha['cep']){
+                   return $linha['id'];
+                }
+            }
+        }
         
 }
