@@ -12,7 +12,8 @@
         echo $_SESSION['user'];
 
         ?>
-		 <a href="../Controller/perf_conf.php">Configurações de Usuario</a> 
+    </br>
+		 <a href="./perf_conf_func.php">Configurações de Usuario</a> 
 		
     </body>
 </html>

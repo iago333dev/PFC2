@@ -65,9 +65,6 @@ class DatabaseUtility{
         }
 
 
-
-
-
        public function insert_user ($login,$senha){
             $sql2 = "INSERT INTO Login (id,usuario,senha,nivel) VALUES (DEFAULT,'$login','$senha','Funcionario')";
             $this->pdo->query($sql2);
@@ -211,6 +208,12 @@ class DatabaseUtility{
             }
         }
         
+            public function update_func_name ($nome,$id){
+            $sql3 = "UPDATE Funcionario SET nome='$nome' WHERE login_id='$id'";
+            $this->pdo->query($sql3);
+       }
         
         
 }
+
+
