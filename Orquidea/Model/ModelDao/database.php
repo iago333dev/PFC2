@@ -212,6 +212,11 @@ class DatabaseUtility{
             $sql3 = "UPDATE Funcionario SET nome='$nome' WHERE login_id='$id'";
             $this->pdo->query($sql3);
        }
+
+        public function update_func_cpf ($cpf,$id){
+            $sql4 = "UPDATE Funcionario SET cpf='$cpf' WHERE login_id='$id'";
+            $this->pdo->query($sql4);
+       }
         
         
 }

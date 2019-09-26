@@ -12,6 +12,13 @@ if (!empty($_POST["wnome"])){
 
 }
 
+if (!empty($_POST["wcpf"])){
+
+	$conn->update_func_cpf($_POST["wcpf"],$_SESSION["id"]);
+
+}
+
+echo " <a href='../View/Perfil_Funcionario.php'>Retornar</a> ";
 
 
 
