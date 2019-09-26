@@ -208,7 +208,7 @@ class DatabaseUtility{
             }
         }
         
-            public function update_func_name ($nome,$id){
+        public function update_func_name ($nome,$id){
             $sql3 = "UPDATE Funcionario SET nome='$nome' WHERE login_id='$id'";
             $this->pdo->query($sql3);
        }
@@ -217,7 +217,28 @@ class DatabaseUtility{
             $sql4 = "UPDATE Funcionario SET cpf='$cpf' WHERE login_id='$id'";
             $this->pdo->query($sql4);
        }
+
+        public function update_func_email ($email,$id){
+            $sql4 = "UPDATE Funcionario SET email='$email' WHERE login_id='$id'";
+            $this->pdo->query($sql4);
+       }
+
+        public function update_func_tel1 ($tel1,$id){
+            $sql4 = "UPDATE Funcionario SET telefone='$tel1' WHERE login_id='$id'";
+            $this->pdo->query($sql4);
+       }
+
+
+        public function update_func_tel2 ($tel2,$id){
+            $sql4 = "UPDATE Funcionario SET celular='$tel2' WHERE login_id='$id'";
+            $this->pdo->query($sql4);
+       }
+
+
         
+
+
+
         
 }
 
