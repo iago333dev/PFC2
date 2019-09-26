@@ -7,11 +7,8 @@
     </head>
     <body>
 
-        <form method="POST" action="../Controller/cadas_dados.php">
-
-            Nome Da Empresa</br><input type="text" name="wemnome" ></br>
-            CNPJ Da Empresa</br><input type="number" name="wemcnpj" ></br>
-            Nome De Usuario</br><input type="text" name="wnome" ></br>
+        <form method="POST" action="../Controller/cadas_cliente.php">
+            Nome do Cliente </br><input type="text" name="wnome" ></br>
             CPF</br><input type="number" name="wcpf" ></br>
             Email</br><input type="email" name="wemail"  ></br>
             Telefone 1</br><input type="number" name="wtel1" ></br>

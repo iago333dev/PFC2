@@ -21,6 +21,7 @@ if($chave == 1){
     $login = filter_input(INPUT_POST,'wlog' ,FILTER_DEFAULT);
     $senha = filter_input(INPUT_POST,'wsen' ,FILTER_DEFAULT);
     
+     
     //Filtrando variaveis de entrada
     $a = filter_input(INPUT_POST,'wnome' ,FILTER_DEFAULT);
     $b = filter_input(INPUT_POST,'wcpf' ,FILTER_DEFAULT);
@@ -36,15 +37,13 @@ if($chave == 1){
     //Conexão com banco
     $conn = new DatabaseUtility();
     $conn ->connect();
-    
-    
-   $id = $conn->find_id($newuser->GetLogin());
-   
+	
    
    $newuser->SetAcesso($login, $senha);
    
-   $conn->insert_user($newuser->GetLogin(), $newuser->GetSenha(),$id);
+   $conn->insert_user(md5($newuser->GetLogin()), md5($newuser->GetSenha()));
    
+   $id = $conn->find_id(md5($newuser->GetLogin()));
    // Tabela Endereço
    
    $log = filter_input(INPUT_POST,'wender' ,FILTER_DEFAULT);
